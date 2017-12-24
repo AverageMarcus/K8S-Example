@@ -1,5 +1,7 @@
 apiVersion: apps/v1beta1
 kind: Deployment
+metadata:
+  name: k8s-example
 spec:
   selector:
     matchLabels:
