@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: example
-        image: **image**
+        image: ##image##
         ports:
         - name: example
           containerPort: 3000
