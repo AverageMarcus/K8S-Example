@@ -21,8 +21,8 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-                        sh("cat /root/.dockercfg")
+                    docker.withRegistry('http://10.109.204.83:5000') {
+                        app.push()
                     }
                 }
             }
