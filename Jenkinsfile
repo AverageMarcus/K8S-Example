@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
               script {
-                app = docker.build(projectName)
+                app = docker.build("${projectName}:${env.GIT_COMMIT}")
               }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    app.push("${env.GIT_COMMIT}")
+                    app.push()
                 }
             }
         }
