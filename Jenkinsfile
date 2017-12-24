@@ -1,4 +1,5 @@
 def projectName = 'averagemarcus/k8s-example'
+def namespace = env.BRANCH_NAME.toLowerCase()
 
 pipeline {
     agent any
@@ -30,9 +31,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh("kubectl get ns ${env.BRANCH_NAME} || kubectl create ns ${env.BRANCH_NAME}")
+                    sh("kubectl get ns ${namespace} || kubectl create ns ${namespace}")
                     sh("sed -i.bak 's|##image##|10.109.204.83:5000/${projectName}:${env.GIT_COMMIT}|' ./app.yaml")
-                    sh("kubectl --namespace=${env.BRANCH_NAME} apply -f app.yaml")
+                    sh("kubectl --namespace=${namespace} apply -f app.yaml")
                 }
             }
         }
