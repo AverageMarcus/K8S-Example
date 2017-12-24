@@ -21,10 +21,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-                        app.push("${env.GIT_COMMIT}")
-                    }
-
+                    app.push("${env.GIT_COMMIT}")
                 }
             }
         }
