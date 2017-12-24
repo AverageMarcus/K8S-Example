@@ -2,7 +2,7 @@ def projectName = 'k8s-example'
 
 pipeline {
     agent any
-    
+
     stages {
         stage('Build') {
             steps {
@@ -20,7 +20,12 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+                        app.push("${env.GIT_COMMIT}")
+                    }
+
+                }
             }
         }
     }
