@@ -21,7 +21,9 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    app.push()
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+                        app.push()
+                    }
                 }
             }
         }
