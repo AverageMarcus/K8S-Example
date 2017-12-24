@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
               script {
-                docker.build($projectName)
+                docker.build(projectName)
               }
             }
         }
