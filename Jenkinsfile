@@ -1,4 +1,4 @@
-def projectName = 'k8s-example'
+def projectName = 'averagemarcus/k8s-example'
 
 pipeline {
     agent any
@@ -18,11 +18,16 @@ pipeline {
               }
             }
         }
-        stage('Deploy') {
+        stage('Push') {
             steps {
                 script {
                     app.push("${env.GIT_COMMIT}")
                 }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying (TODO)'
             }
         }
     }
