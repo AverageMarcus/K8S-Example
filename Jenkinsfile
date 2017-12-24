@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('http://10.109.204.83:5000') {
-                        app.push()
+                        app.push("${env.GIT_COMMIT}")
                     }
                 }
             }
