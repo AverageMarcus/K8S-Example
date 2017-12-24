@@ -1,3 +1,4 @@
+def projectName = 'k8s-example'
 
 pipeline {
     agent any
@@ -6,13 +7,15 @@ pipeline {
         stage('Build') {
             steps {
               script {
-                docker.build('K8S-Example')
+                docker.build($projectName)
               }
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+              script {
+                sh("docker run --entrypoint npm ${projectName} test")
+              }
             }
         }
         stage('Deploy') {
