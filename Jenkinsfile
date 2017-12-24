@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-                        app.push()
+                        sh("cat /root/.dockercfg")
                     }
                 }
             }
