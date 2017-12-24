@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script {
                     sh("kubectl get ns ${env.BRANCH_NAME} || kubectl create ns ${env.BRANCH_NAME}")
-                    sh("sed -i -e 's/**image**/${projectName}:${env.GIT_COMMIT}/g' ./app.yaml")
+                    sh("sed -i -e \'s/**image**/${projectName}:${env.GIT_COMMIT}/g\' ./app.yaml")
                     sh("kubectl --namespace=${env.BRANCH_NAME} apply -f app.yml")
                 }
             }
