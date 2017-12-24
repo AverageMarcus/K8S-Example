@@ -5,7 +5,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-              docker.build('K8S-Example')
+              script {
+                docker.build('K8S-Example')
+              }
             }
         }
         stage('Test') {
