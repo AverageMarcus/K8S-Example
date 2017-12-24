@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "ava",
+    "test": "./node_modules/.bin/ava",
     "start": "node index.js"
   },
   "repository": {
@@ -18,7 +18,7 @@
     "url": "https://github.com/AverageMarcus/K8S-Example/issues"
   },
   "homepage": "https://github.com/AverageMarcus/K8S-Example#readme",
-  "devDependencies": {
+  "dependencies": {
     "ava": "^0.24.0"
   }
 }
