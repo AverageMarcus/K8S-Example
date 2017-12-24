@@ -38,7 +38,7 @@ pipeline {
         stage('Comment') {
             steps {
                 script {
-                    pullRequest.comment("http://${externalIP}:\$(kubectl get svc k8s-example --namespace=master -o go-template='{{(index .spec.ports 0).nodePort}}')")
+                    pullRequest.comment("http://${externalIP}:$(kubectl get svc k8s-example --namespace=master -o go-template='{{(index .spec.ports 0).nodePort}}')")
                 }
             }
         }
