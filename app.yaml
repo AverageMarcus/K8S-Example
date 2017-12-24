@@ -3,7 +3,7 @@ kind: Deployment
 spec:
   selector:
     matchLabels:
-      app: k8s-exaple
+      app: k8s-example
   template:
     metadata:
       labels:
