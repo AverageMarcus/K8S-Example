@@ -25,4 +25,5 @@ spec:
   type: LoadBalancer
   ports:
   - port: 3000
-  selector: k8s-example
+  selector: 
+    app: k8s-example
