@@ -29,7 +29,11 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying (TODO)'
+                script {
+                    sh("kubectl get ns ${env.BRANCH_NAME} || kubectl create ns ${env.BRANCH_NAME}")
+                    sh("sed -i.bak 's#**image**#${projectName}:${env.GIT_COMMIT}#' ./app.yaml")
+                    sh("kubectl --namespace=${env.BRANCH_NAME} apply -f app.yml")
+                }
             }
         }
     }
