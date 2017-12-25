@@ -7,6 +7,10 @@ def privateRegistery = 'http://10.109.204.83:5000'
 pipeline {
     agent any
 
+    options {
+      buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
+
     stages {
         stage('Build') {
             steps {
