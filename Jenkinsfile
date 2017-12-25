@@ -14,9 +14,7 @@ pipeline {
     stages {
         stage('Debug') {
             steps {
-                script {
-                    sh "echo ${env}"
-                }
+                sh 'printenv'
             }
         }
         stage('Build') {
