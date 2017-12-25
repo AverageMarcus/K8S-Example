@@ -10,9 +10,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-              script {
-                app = docker.build(projectName)
-              }
+                def app = docker.build(projectName)
             }
         }
         stage('Push') {
