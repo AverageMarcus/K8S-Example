@@ -12,6 +12,13 @@ pipeline {
     }
 
     stages {
+        stage('Debug') {
+            steps {
+                script {
+                    sh "echo ${env}"
+                }
+            }
+        }
         stage('Build') {
             steps {
                 script {
