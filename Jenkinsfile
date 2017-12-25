@@ -35,11 +35,13 @@ pipeline {
         }
         stage('Comment') {
             steps {
-                def url = sh(
-                    script: "echo \"http://${externalIP}:\$(kubectl get svc k8s-example --namespace=master -o go-template='{{(index .spec.ports 0).nodePort}}')\"",
-                    returnStdout: true
-                )
-                pullRequest.comment(url)
+                script {
+                    def url = sh(
+                        script: "echo \"http://${externalIP}:\$(kubectl get svc k8s-example --namespace=master -o go-template='{{(index .spec.ports 0).nodePort}}')\"",
+                        returnStdout: true
+                    )
+                    pullRequest.comment(url)
+                }
             }
         }
     }
