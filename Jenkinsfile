@@ -12,11 +12,6 @@ pipeline {
     }
 
     stages {
-        stage('Debug') {
-            steps {
-                sh 'printenv'
-            }
-        }
         stage('Build') {
             steps {
                 script {
@@ -36,7 +31,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh """
-                    kubectl get ns ${namespace} || kubectl create ns ${namespace}
+                    kubectl get ns ${namespace} || echo '{"kind": "Namespace","apiVersion": "v1","metadata": {"name": "${namespace}","labels": {"temp": "true"}}}' | kubectl apply -f -
                     sed -i.bak 's|##image##|10.109.204.83:5000/${projectName}:${env.GIT_COMMIT}|' ./app.yaml
                     kubectl --namespace=${namespace} apply -f app.yaml
                 """
