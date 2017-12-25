@@ -26,14 +26,19 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                script {
-                    sh("kubectl get ns ${namespace} || kubectl create ns ${namespace}")
-                    sh("sed -i.bak 's|##image##|10.109.204.83:5000/${projectName}:${env.GIT_COMMIT}|' ./app.yaml")
-                    sh("kubectl --namespace=${namespace} apply -f app.yaml")
-                }
+                sh """
+                    kubectl get ns ${namespace} || kubectl create ns ${namespace}
+                    sed -i.bak 's|##image##|10.109.204.83:5000/${projectName}:${env.GIT_COMMIT}|' ./app.yaml
+                    kubectl --namespace=${namespace} apply -f app.yaml
+                """
             }
         }
         stage('Comment') {
+            when {
+                not {
+                    branch 'master'
+                }
+            }
             steps {
                 script {
                     def url = sh(
