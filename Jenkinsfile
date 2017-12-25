@@ -12,6 +12,11 @@ pipeline {
     }
 
     stages {
+        stage('Debug') {
+            steps {
+                sh 'printenv'
+            }
+        }
         stage('Build') {
             steps {
                 script {
